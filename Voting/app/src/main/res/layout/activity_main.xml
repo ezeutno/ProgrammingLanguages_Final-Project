@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|end|center_vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+
+        android:text="Satisfied"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton1"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton1"
+        app:layout_constraintTop_toTopOf="@+id/imageButton1" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="275dp"
+        android:layout_height="83dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="false"
+        android:onClick="smile"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toBottomOf="@+id/frame_Layout_smile"
+        app:layout_constraintEnd_toEndOf="@+id/frame_Layout_smile"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/frame_Layout_smile"
+        app:layout_constraintTop_toTopOf="@+id/frame_Layout_smile"
+        app:srcCompat="@drawable/smile" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|end|center_vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Neutral"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="275dp"
+        android:layout_height="83dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="false"
+        android:onClick="neutral"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toBottomOf="@+id/frame_Layout_neutral"
+        app:layout_constraintEnd_toEndOf="@+id/frame_Layout_neutral"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/frame_Layout_neutral"
+        app:layout_constraintTop_toTopOf="@+id/frame_Layout_neutral"
+        app:srcCompat="@drawable/neutral" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|end|center_vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Dissatisfied"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+        app:layout_constraintTop_toTopOf="@+id/imageButton3" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="275dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="false"
+        android:onClick="dissatisfied"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toBottomOf="@+id/frame_Layout_sad"
+        app:layout_constraintEnd_toEndOf="@+id/frame_Layout_sad"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/frame_Layout_sad"
+        app:layout_constraintTop_toTopOf="@+id/frame_Layout_sad"
+        app:srcCompat="@drawable/sad" />
+
+    <FrameLayout
+        android:id="@+id/frame_Layout_smile"
+        android:layout_width="294dp"
+        android:layout_height="112dp"
+        app:layout_constraintBottom_toTopOf="@+id/frame_Layout_neutral"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_Layout_neutral"
+        android:layout_width="296dp"
+        android:layout_height="108dp"
+        app:layout_constraintBottom_toTopOf="@+id/frame_Layout_sad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_Layout_smile">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_Layout_sad"
+        android:layout_width="296dp"
+        android:layout_height="106dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_Layout_neutral">
+
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>
