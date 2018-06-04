@@ -3,14 +3,13 @@ package online.ezechial.voting;
 import android.os.StrictMode;
 import android.util.Log;
 import java.sql.*;
-import java.util.Calendar;
 
 public class DB {
     private Connection conn;
     private Statement stm;
-    private ResultSet rs;
-    private ResultSetMetaData rsmd;
-    private String url = "jdbc:mysql://10.66.171.7/ratingporis";
+//    private ResultSet rs;
+//    private ResultSetMetaData rsmd;
+    private String url = "jdbc:mysql://10.66.171.7/pl_finalproject";
     private String username = "ezechial";
     private String password = "";
     private String query = "";
@@ -38,12 +37,7 @@ public class DB {
 
     public void insertData(int code){
         try{
-            Calendar now = Calendar.getInstance();
-            int yearNow = now.get(Calendar.YEAR);
-            int monthNow = now.get(Calendar.MONTH) + 1;
-            int dateNow = now.get(Calendar.DATE);
-            String date = "\""+yearNow+"-"+monthNow+"-"+dateNow+"\"";
-            query = "INSERT INTO rating (rating_code,rating_date) VALUES ("+code+","+date+")";
+            query = "INSERT INTO rating (rating_code) VALUES ("+code+")";
             stm.execute(query);
         }catch(Exception e){
             Log.i("info","Error Message : "+e.getMessage());

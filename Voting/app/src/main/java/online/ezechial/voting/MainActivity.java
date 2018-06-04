@@ -6,31 +6,31 @@ import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    DB newDB = new DB();
+    Model newModel = new Model();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        Boolean data = newDB.connectDB();
-        if (!data){
-            Toast.makeText(this,("NOT CONNECTED"),Toast.LENGTH_SHORT).show();
-        }
         setContentView(R.layout.activity_main);
+        if (!newModel.getConnection()) {
+            finish();
+        }else{
+            getSupportActionBar().hide();
+        }
     }
 
     public void smile(View view) {
         Toast.makeText(this,("Satisfied"),Toast.LENGTH_SHORT).show();
-        newDB.insertData(1);
+        newModel.insertSmile();
     }
 
     public void neutral(View view) {
         Toast.makeText(this,("Neutral"),Toast.LENGTH_SHORT).show();
-        newDB.insertData(2);
+        newModel.insertNeutral();
     }
 
     public void dissatisfied(View view) {
         Toast.makeText(this,("Dissatisfied"),Toast.LENGTH_SHORT).show();
-        newDB.insertData(3);
+        newModel.insertSad();
     }
 }
