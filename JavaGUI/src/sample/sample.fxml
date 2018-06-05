@@ -8,27 +8,13 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#printText" text="Give Vote" />
-         </children>
-      </VBox>
-   </right>
-   <bottom>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Label" />
-         </children>
-      </VBox>
-   </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
             <Group>
                <children>
                   <PieChart fx:id="pie" title="Satisfaction Chart" />
-                  <BarChart fx:id="bar" title="Satisfaction Chart" visible="false">
+                  <BarChart fx:id="bar" title="Satisfaction Chart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -36,7 +22,7 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <LineChart fx:id="line" title="Satisfaction Chart" visible="false">
+                  <LineChart fx:id="line" title="Satisfaction Chart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -74,13 +60,13 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <RadioButton fx:id="todayButton" mnemonicParsing="false" onAction="#disableDatePicker" selected="true" text="Today">
+            <RadioButton fx:id="todayButton" mnemonicParsing="false" onAction="#getToday" selected="true" text="Today">
                <toggleGroup>
                   <ToggleGroup fx:id="TimeRadioButtonGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="monthButton" mnemonicParsing="false" onAction="#disableDatePicker" text="This Month" toggleGroup="$TimeRadioButtonGroup" />
-            <RadioButton fx:id="yearButton" mnemonicParsing="false" onAction="#disableDatePicker" text="This Year" toggleGroup="$TimeRadioButtonGroup" />
+            <RadioButton fx:id="monthButton" mnemonicParsing="false" onAction="#getThisMonth" text="This Month" toggleGroup="$TimeRadioButtonGroup" />
+            <RadioButton fx:id="yearButton" mnemonicParsing="false" onAction="#getThisYear" text="This Year" toggleGroup="$TimeRadioButtonGroup" />
             <RadioButton fx:id="timeButton" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" onAction="#enableDatePicker" text="Time" toggleGroup="$TimeRadioButtonGroup" />
             <Label text="From:" />
             <DatePicker fx:id="fromDate" disable="true" />
