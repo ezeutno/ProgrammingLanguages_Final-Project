@@ -43,35 +43,28 @@ public class Database {
 
     public int getRatingCount(int rating_code, String start_time, String end_time) {
         try {
-            String query = "SELECT rating_code, count(*) FROM rating WHERE rating_code = "+rating_code+" AND rating_timestamp >= '"
+            String query = "SELECT count(*) FROM rating WHERE rating_code = "+rating_code+" AND rating_timestamp >= '"
                     +start_time+" 00:00:00' AND rating_timestamp <= '"+end_time+" 23:59:59'";
             rs = stm.executeQuery(query);
             rs.next();
-            return rs.getInt(2);
+            return rs.getInt(1);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return -1;
         }
     }
 
-    public ResultSet getData() {
+    public int getRatingCount(int rating_code, String start_time, String end_time,String curr_date){
         try {
-            String query = "SELECT rating_code, count(*) FROM rating GROUP BY rating_code";
+            String query = "SELECT count(*) FROM rating WHERE rating_code = "+rating_code+" AND rating_timestamp >= '"
+                    +curr_date+" "+start_time+"' AND rating_timestamp <= '"+curr_date+" "+end_time+"'";
             rs = stm.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return -1;
         }
-        return rs;
     }
 
-    public ResultSet getData(Timestamp start_date, Timestamp end_date) {
-        try {
-            String query = "SELECT rating_code, count(*) FROM rating WHERE rating_timestamp >= "
-                    +start_date+" AND rating_timestamp <= "+end_date+" GROUP BY rating_code";
-            rs = stm.executeQuery(query);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return rs;
-    }
 }
