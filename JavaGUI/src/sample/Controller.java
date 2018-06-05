@@ -52,7 +52,6 @@ public class Controller implements Initializable {
 
     public void showBarChart(){
         bar.getData().clear();
-        bar.getData().clear();
         bar.getXAxis().setLabel("Time");
         bar.getYAxis().setLabel("Satisfaction Level");
 
