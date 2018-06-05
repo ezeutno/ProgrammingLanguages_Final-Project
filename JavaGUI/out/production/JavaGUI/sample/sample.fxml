@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Group>
+               <children>
+                  <PieChart fx:id="pie" title="Satisfaction Chart" />
+                  <BarChart fx:id="bar" title="Satisfaction Chart">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <LineChart fx:id="line" title="Satisfaction Chart">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </Group>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Chart View: ">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#showPieChart" text="Pie Chart" />
+            <Button mnemonicParsing="false" onAction="#showBarChart" text="Bar Chart" />
+            <Button mnemonicParsing="false" onAction="#showLineChart" text="Line Chart" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="125.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Based on:">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <RadioButton fx:id="todayButton" mnemonicParsing="false" onAction="#getToday" selected="true" text="Today">
+               <toggleGroup>
+                  <ToggleGroup fx:id="TimeRadioButtonGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="monthButton" mnemonicParsing="false" onAction="#getThisMonth" text="This Month" toggleGroup="$TimeRadioButtonGroup" />
+            <RadioButton fx:id="yearButton" mnemonicParsing="false" onAction="#getThisYear" text="This Year" toggleGroup="$TimeRadioButtonGroup" />
+            <RadioButton fx:id="timeButton" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" onAction="#enableDatePicker" text="Time" toggleGroup="$TimeRadioButtonGroup" />
+            <Label text="From:" />
+            <DatePicker fx:id="fromDate" disable="true" />
+            <Label text="To:" />
+            <DatePicker fx:id="toDate" disable="true" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+</BorderPane>
