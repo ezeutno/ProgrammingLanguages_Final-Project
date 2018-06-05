@@ -1,17 +1,23 @@
 package online.ezechial.voting;
 
-public class Model {
-    DB newDB;
-    Boolean connectCond;
+public class Model{
+    private DB newDB;
+    private Boolean connectCond;
+    private Boolean urlSet;
     public Model(){
         newDB = new DB();
-        connectCond = newDB.connectDB();
+        urlSet = false;
+        connectCond = false;
     }
     public boolean getConnection(){
         return connectCond;
     }
-    public void reRun(){
+    public void Run(){
         connectCond = newDB.connectDB();
+    }
+    public void setServerLocation(String serverLocation){
+        newDB.setServerLocation(serverLocation);
+        urlSet = true;
     }
     public void insertSmile(){
         newDB.insertData(1);

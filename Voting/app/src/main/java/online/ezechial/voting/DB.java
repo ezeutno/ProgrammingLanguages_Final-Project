@@ -2,6 +2,8 @@ package online.ezechial.voting;
 
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.sql.*;
 
 public class DB {
@@ -9,10 +11,15 @@ public class DB {
     private Statement stm;
 //    private ResultSet rs;
 //    private ResultSetMetaData rsmd;
-    private String url = "jdbc:mysql://10.66.171.7/pl_finalproject";
+    private String url ;
     private String username = "ezechial";
     private String password = "";
     private String query = "";
+
+    public void setServerLocation(String Location){
+        url = "jdbc:mysql://"+Location+"/pl_finalproject";
+        Log.i("INFO DB",url);
+    }
 
     public boolean connectDB(){
         // to permit internet connection
@@ -32,6 +39,7 @@ public class DB {
         } catch(Exception e){
             Log.i("exception","Error Message : "+e.getMessage());
         }
+        Log.i("URL RES","URL : "+url);
         return false;
     }
 
