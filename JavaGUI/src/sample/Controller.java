@@ -24,7 +24,6 @@ public class Controller implements Initializable {
     @FXML private RadioButton timeButton;
     @FXML private DatePicker fromDate;
     @FXML private DatePicker toDate;
-    private int loop;
     private Database db = new Database();
 
     @Override
@@ -62,14 +61,33 @@ public class Controller implements Initializable {
         series2.setName("Neutral");
         series3.setName("Dissatisfied");
 
-        if(todayButton.isSelected()) loop = 24;
-        else if(monthButton.isSelected()) loop = LocalDate.now().lengthOfMonth();
-        else if(yearButton.isSelected()) loop = 12;
-        else loop = toDate.getValue().getDayOfYear() - fromDate.getValue().getDayOfYear() + 1;
-        for(int x = 1; x <= loop; x++){
-            series1.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(1, fromDate.getValue().toString(), toDate.getValue().toString())));
-            series2.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(2, fromDate.getValue().toString(), toDate.getValue().toString())));
-            series3.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(3, fromDate.getValue().toString(), toDate.getValue().toString())));
+        if(todayButton.isSelected()){
+            for(int x = 0; x < 24; x++){
+                series1.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(1, String.valueOf(x), String.valueOf(x+1), LocalDate.now().toString())));
+                series2.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(2, String.valueOf(x), String.valueOf(x+1), LocalDate.now().toString())));
+                series3.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(3, String.valueOf(x), String.valueOf(x+1), LocalDate.now().toString())));
+            }
+        }
+        else if (monthButton.isSelected()){
+            for(int x = 1; x <= LocalDate.now().lengthOfMonth(); x++){
+                series1.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(1, String.valueOf(x), String.valueOf(x+1))));
+                series2.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(2, String.valueOf(x), String.valueOf(x+1))));
+                series3.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(3, String.valueOf(x), String.valueOf(x+1))));
+            }
+        }
+        else if (yearButton.isSelected()){
+            for(int x = 1; x <= 12; x++){
+                series1.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(1, String.valueOf(x), String.valueOf(x+1))));
+                series2.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(2, String.valueOf(x), String.valueOf(x+1))));
+                series3.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(3, String.valueOf(x), String.valueOf(x+1))));
+            }
+        }
+        else {
+            for(int x = 1; x <= toDate.getValue().getDayOfYear() - fromDate.getValue().getDayOfYear() + 1; x++){
+                series1.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(1, String.valueOf(x), String.valueOf(x+1))));
+                series2.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(2, String.valueOf(x), String.valueOf(x+1))));
+                series3.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(3, String.valueOf(x), String.valueOf(x+1))));
+            }
         }
 
         bar.getData().addAll(series1, series2, series3);
@@ -80,6 +98,28 @@ public class Controller implements Initializable {
     }
 
     public void showLineChart(){
+//        line.getData().clear();
+//        line.getXAxis().setLabel("Time");
+//        line.getYAxis().setLabel("Satisfaction Level");
+//
+//        XYChart.Series series1 = new XYChart.Series();
+//        XYChart.Series series2 = new XYChart.Series();
+//        XYChart.Series series3 = new XYChart.Series();
+//        series1.setName("Satisfied");
+//        series2.setName("Neutral");
+//        series3.setName("Dissatisfied");
+//
+//        if(todayButton.isSelected()) loop = 24;
+//        else if(monthButton.isSelected()) loop = LocalDate.now().lengthOfMonth();
+//        else if(yearButton.isSelected()) loop = 12;
+//        else loop = toDate.getValue().getDayOfYear() - fromDate.getValue().getDayOfYear() + 1;
+//        for(int x = 1; x <= loop; x++){
+//            series1.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(1, fromDate.getValue().toString(), toDate.getValue().toString())));
+//            series2.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(2, fromDate.getValue().toString(), toDate.getValue().toString())));
+//            series3.getData().add(new XYChart.Data(String.valueOf(x), db.getRatingCount(3, fromDate.getValue().toString(), toDate.getValue().toString())));
+//        }
+//
+//        line.getData().addAll(series1, series2, series3);
 
         pie.setVisible(false);
         bar.setVisible(false);

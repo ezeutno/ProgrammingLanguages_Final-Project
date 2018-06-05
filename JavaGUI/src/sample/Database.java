@@ -57,7 +57,7 @@ public class Database {
     public int getRatingCount(int rating_code, String start_time, String end_time,String curr_date){
         try {
             String query = "SELECT count(*) FROM rating WHERE rating_code = "+rating_code+" AND rating_timestamp >= '"
-                    +curr_date+" "+start_time+"' AND rating_timestamp <= '"+curr_date+" "+end_time+"'";
+                    +curr_date+" "+start_time+":00:00' AND rating_timestamp <= '"+curr_date+" "+end_time+":00:00'";
             rs = stm.executeQuery(query);
             rs.next();
             return rs.getInt(1);
