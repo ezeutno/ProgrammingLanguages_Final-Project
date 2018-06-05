@@ -2,7 +2,6 @@ package online.ezechial.voting;
 
 import android.os.StrictMode;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.sql.*;
 
@@ -43,12 +42,14 @@ public class DB {
         return false;
     }
 
-    public void insertData(int code){
+    public boolean insertData(int code){
         try{
             query = "INSERT INTO rating (rating_code) VALUES ("+code+")";
             stm.execute(query);
+            return true;
         }catch(Exception e){
             Log.i("info","Error Message : "+e.getMessage());
+            return false;
         }
     }
 

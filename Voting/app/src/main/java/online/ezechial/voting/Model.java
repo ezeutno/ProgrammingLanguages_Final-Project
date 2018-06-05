@@ -19,13 +19,13 @@ public class Model{
         newDB.setServerLocation(serverLocation);
         urlSet = true;
     }
-    public void insertSmile(){
-        newDB.insertData(1);
+    public boolean insertSmile(){
+        return newDB.insertData(1);
     };
-    public void insertNeutral(){
-        newDB.insertData(2);
+    public boolean insertNeutral(){
+        return newDB.insertData(2);
     }
-    public void insertSad(){
-        newDB.insertData(3);
+    public boolean insertSad(){
+        return newDB.insertData(3);
     }
 }

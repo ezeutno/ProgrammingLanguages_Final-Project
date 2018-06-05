@@ -27,6 +27,7 @@ public class InsertServerLocation extends AppCompatActivity {
         Intent newIntent = new Intent(InsertServerLocation.this, MainActivity.class);
         newIntent.putExtra(MESSAGE_KEY,content);
         Toast.makeText(this,("Re-Connecting"),Toast.LENGTH_SHORT).show();
+        finish();
         startActivity(newIntent);
     }
 }
