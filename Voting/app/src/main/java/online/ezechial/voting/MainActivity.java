@@ -8,8 +8,11 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Model newModel;
-    private ReadAndWriteFiles rnf;
     public final static String MESSAGE_KEY ="online.ezechial.voting.url";
+
+    private Thread newTh;
+    private ServerInput newSI;
+
 
     public void setVisibility(int viewState){
         findViewById(R.id.frame_Layout_neutral).setVisibility(viewState);
@@ -25,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setVisibility(View.INVISIBLE);
 
         newModel = new Model();
+
         Intent newIntent = getIntent();
+
         newModel.setServerLocation(newIntent.getStringExtra(MESSAGE_KEY));
         newModel.Run();
 
@@ -33,22 +38,34 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, InsertServerLocation.class));
         }else{
             setVisibility(View.VISIBLE);
+            newSI = new ServerInput();
+            newTh  = new Thread(newSI);
+            newTh.start();
         }
         getSupportActionBar().hide();
+    }
+
+    public void setShown(){
+        setVisibility(View.INVISIBLE);
+        while (true) if (newSI.getCurrentCond()) break;
+        setVisibility(View.VISIBLE);
     }
 
     public void smile(View view) {
         Toast.makeText(this,("Satisfied"),Toast.LENGTH_SHORT).show();
         newModel.insertSmile();
+        setShown();
     }
 
     public void neutral(View view) {
         Toast.makeText(this,("Neutral"),Toast.LENGTH_SHORT).show();
         newModel.insertNeutral();
+        setShown();
     }
 
     public void dissatisfied(View view) {
         Toast.makeText(this,("Dissatisfied"),Toast.LENGTH_SHORT).show();
         newModel.insertSad();
+        setShown();
     }
 }
