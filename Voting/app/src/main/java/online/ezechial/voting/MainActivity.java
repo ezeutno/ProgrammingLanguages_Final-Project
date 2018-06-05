@@ -1,22 +1,40 @@
 package online.ezechial.voting;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Model newModel = new Model();
+    private Model newModel;
+    private ReadAndWriteFiles rnf;
+    public final static String MESSAGE_KEY ="online.ezechial.voting.url";
+
+    public void setVisibility(int viewState){
+        findViewById(R.id.frame_Layout_neutral).setVisibility(viewState);
+        findViewById(R.id.frame_Layout_smile).setVisibility(viewState);
+        findViewById(R.id.frame_Layout_sad).setVisibility(viewState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!newModel.getConnection()) {
-            finish();
+
+        setVisibility(View.INVISIBLE);
+
+        newModel = new Model();
+        Intent newIntent = getIntent();
+        newModel.setServerLocation(newIntent.getStringExtra(MESSAGE_KEY));
+        newModel.Run();
+
+        if (!newModel.getConnection()){
+            startActivity(new Intent(MainActivity.this, InsertServerLocation.class));
         }else{
-            getSupportActionBar().hide();
+            setVisibility(View.VISIBLE);
         }
+        getSupportActionBar().hide();
     }
 
     public void smile(View view) {
