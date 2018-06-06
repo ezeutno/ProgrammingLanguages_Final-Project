@@ -13,7 +13,7 @@
          <children>
             <Group>
                <children>
-                  <PieChart fx:id="pie" title="Satisfaction Chart" />
+                  <PieChart fx:id="pie" onMouseEntered="#showPieLabel" onMousePressed="#showPieLabel" title="Satisfaction Chart" />
                   <BarChart fx:id="bar" title="Satisfaction Chart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
@@ -30,6 +30,11 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
+                  <Label fx:id="caption" text="Label">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
                </children>
             </Group>
          </children>

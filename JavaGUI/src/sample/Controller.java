@@ -2,12 +2,16 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -24,6 +28,7 @@ public class Controller implements Initializable {
     @FXML private RadioButton timeButton;
     @FXML private DatePicker fromDate;
     @FXML private DatePicker toDate;
+    @FXML private Label caption;
     private Database db = new Database();
 
     @Override
@@ -148,5 +153,21 @@ public class Controller implements Initializable {
     public void disableDatePicker(){
         fromDate.setDisable(true);
         toDate.setDisable(true);
+    }
+
+    public void showPieLabel(){
+        caption.setTextFill(Color.BLACK);
+        caption.setStyle("-fx-font: 32 System;");
+
+        for (final PieChart.Data data : pie.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX()*0.625);
+                            caption.setTranslateY(e.getSceneY()*0.65);
+                            caption.setText(String.valueOf((int) data.getPieValue()));
+                        }
+                    });
+        }
     }
 }
